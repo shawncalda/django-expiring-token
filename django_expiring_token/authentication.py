@@ -29,7 +29,7 @@ def token_expire_handler(token: ExpiringToken) -> typing.Tuple[bool, ExpiringTok
     is_expired = is_token_expired(token)
     if is_expired:
         token.delete()
-        token: ExpiringToken = ExpiringToken.objects.create(user=token.user)
+        token: ExpiringToken = ExpiringToken.objects.get_or_create(user=token.user)
     return is_expired, token
 
 
